@@ -5,9 +5,9 @@ from torch.nn import BCELoss
 
 
 class RobertaClassificationHead(nn.Module):
-    """用于句子级分类任务的头部。"""
+    """Head for sentence-level classification tasks with two fully connected layers and ReLU activation."""
 
- def __init__(self, config, args):
+    def __init__(self, config, args):
         super().__init__()
         self.dense1 = nn.Linear(config.hidden_size, config.hidden_size)
         self.relu = nn.ReLU()  # ReLU activation
