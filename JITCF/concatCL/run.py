@@ -458,12 +458,11 @@ def main(args):
     config.feature_size = args.feature_size
     config.hidden_dropout_prob = args.head_dropout_prob
     tokenizer = RobertaTokenizer.from_pretrained(args.tokenizer_name)
-    special_tokens_dict = {'additional_special_tokens': ["[ADD]", "[DEL]"]}
-    tokenizer.add_special_tokens(special_tokens_dict)
+    tokenizer.add_special_tokens({'additional_special_tokens': ["[ADD]", "[DEL]"]})
 
     model = RobertaModel.from_pretrained(args.model_name_or_path, config=config)
 
-    model.resize_token_embeddings(len(tokenizer))
+
     logger.info("Training/evaluation parameters %s", args)
 
     model = Model(model, config, tokenizer, args)
