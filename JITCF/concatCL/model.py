@@ -5,7 +5,7 @@ from torch.nn import BCELoss
 
 
 class RobertaClassificationHead(nn.Module):
-    """Head for sentence-level classification tasks with two fully connected layers and ReLU activation."""
+ 
 
     def __init__(self, config, args):
         super().__init__()
@@ -44,7 +44,7 @@ class Model(nn.Module):
         last_layer_attn_weights = outputs.attentions[self.config.num_hidden_layers - 1][:, :,
                                   0].detach() if output_attentions else None
 
-        # 提取 [CLS] 特征用于对比损失
+     
         cls_feature = outputs[0][:, 0, :]  # shape: [batch_size, hidden_size]
 
         logits = self.classifier(outputs[0], manual_features)
