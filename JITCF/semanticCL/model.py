@@ -4,7 +4,6 @@ from torch.nn import BCELoss
 
 
 class RobertaClassificationHead(nn.Module):
-    """Head for sentence-level classification tasks with two fully connected layers and ReLU activation."""
 
     def __init__(self, config, args):
         super().__init__()
@@ -38,7 +37,7 @@ class Model(nn.Module):
 
     def forward(self, inputs_ids, attn_masks, labels=None):
         outputs = self.encoder(input_ids=inputs_ids, attention_mask=attn_masks)[0]
-        cls_feature = outputs[:, 0, :]  # 取CLS向量用于对比损失
+        cls_feature = outputs[:, 0, :]  
         logits = self.classifier(outputs)
         prob = torch.sigmoid(logits)
 
